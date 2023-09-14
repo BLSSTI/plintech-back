@@ -19,7 +19,7 @@ export class CategoryService {
     return this.categoryRepository.findAll();
   }
 
-  async findOne(id: string | number): Promise<CategoryDto> {
+  async findOne(id: string): Promise<CategoryDto> {
     return this.categoryRepository.findOne(id);
   }
 
@@ -28,12 +28,12 @@ export class CategoryService {
     return this.categoryRepository.create(data);
   }
 
-  async update(id: string | number, data: UpdateCategoryDto): Promise<CategoryDto> {
+  async update(id: string, data: UpdateCategoryDto): Promise<CategoryDto> {
       await this.veryfyMenu(data.menuId)
       return this.categoryRepository.update(id, data);
   }
 
-  async remove(id: string | number): Promise<CategoryDto> {
+  async remove(id: string): Promise<CategoryDto> {
     return this.categoryRepository.remove(id);
   }
   async veryfyMenu(id: string){

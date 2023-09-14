@@ -25,7 +25,7 @@ export class MenuRepository {
       },
     });
   }
-  async findOne(id: string | number): Promise<MenuDto | null> {
+  async findOne(id: string): Promise<MenuDto | null> {
     return await this.prismaService.getClient().menu.findUnique({
       where: { id: String(id) },
     });
@@ -37,14 +37,14 @@ export class MenuRepository {
     });
   }
 
-  async update(id: string | number, data: UpdateMenuDto): Promise<MenuDto | null> {
+  async update(id: string, data: UpdateMenuDto): Promise<MenuDto | null> {
     return await this.prismaService.getClient().menu.update({
       where: { id: String(id) },
       data,
     });
   }
 
-  async remove(id: string | number): Promise<MenuDto | null> {
+  async remove(id: string): Promise<MenuDto | null> {
     return await this.prismaService.getClient().menu.delete({
       where: { id: String(id) },
     });

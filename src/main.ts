@@ -7,6 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.get(PrismaService)
 
+  if(process.env.NODE_ENV !== 'production') {
   const config = new DocumentBuilder()
     .setTitle('Plintech Api')
     .setDescription('Plintech Api')
@@ -14,7 +15,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('api-docs', app, document)
+}
   await app.listen(3000);
 }
 bootstrap();

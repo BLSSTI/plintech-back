@@ -1,8 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ProductRepository } from './product.repository';
 import { CreateProductDto, ProductDto, UpdateProductDto } from './dto/product.dto';
-
-import { PrismaService } from 'src/database/prisma.service';
 import { CategoryRepository } from 'src/category/category.repository';
 import { CategoryDto } from 'src/category/dto/category.dto';
 
@@ -17,7 +15,7 @@ export class ProductService {
     return this.categoryRepository.findAllWithProducts();
   }
 
-  async findOne(id: string | number): Promise<ProductDto | null> {
+  async findOne(id: string): Promise<ProductDto | null> {
     return this.productRepository.findOne(id);
   }
 
@@ -26,12 +24,12 @@ export class ProductService {
     return this.productRepository.create(data);
   }
 
-  async update(id: string | number, data: UpdateProductDto): Promise<ProductDto | null> {
+  async update(id: string, data: UpdateProductDto): Promise<ProductDto | null> {
     this.veryfyCategory(data.categoryId)
     return this.productRepository.update(id, data);
   }
 
-  async remove(id: string | number): Promise<ProductDto | null> {
+  async remove(id: string): Promise<ProductDto | null> {
     return this.productRepository.remove(id);
   }
 

@@ -20,7 +20,7 @@ export class ProductRepository {
     })
   }
 
-  async findOne(id: string | number): Promise<ProductDto | null> {
+  async findOne(id: string): Promise<ProductDto | null> {
     return await this.prismaService.getClient().product.findUnique({
       where: { id: String(id) },
     });
@@ -33,7 +33,7 @@ export class ProductRepository {
     });
   }
 
-  async update(id: string | number, data: UpdateProductDto): Promise<ProductDto | null> {
+  async update(id: string, data: UpdateProductDto): Promise<ProductDto | null> {
     this.veryfyCategory(data.categoryId)
     return await this.prismaService.getClient().product.update({
       where: { id: String(id) },
@@ -41,7 +41,7 @@ export class ProductRepository {
     });
   }
 
-  async remove(id: string | number): Promise<ProductDto | null> {
+  async remove(id: string): Promise<ProductDto | null> {
     return await this.prismaService.getClient().product.delete({
       where: { id: String(id) },
     });

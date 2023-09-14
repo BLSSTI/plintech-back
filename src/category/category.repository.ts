@@ -18,7 +18,7 @@ export class CategoryRepository {
       }
     });
   }
-  async findOne(id: string | number): Promise<CategoryDto | null> {
+  async findOne(id: string): Promise<CategoryDto | null> {
     return await this.prismaService.getClient().category.findUnique({
       where: { id: String(id) },
       include:{
@@ -33,14 +33,14 @@ export class CategoryRepository {
     });
   }
 
-  async update(id: string | number, data: UpdateCategoryDto): Promise<CategoryDto | null> {
+  async update(id: string , data: UpdateCategoryDto): Promise<CategoryDto | null> {
     return await this.prismaService.getClient().category.update({
       where: { id: String(id) },
       data,
     });
   }
 
-  async remove(id: string | number): Promise<CategoryDto | null> {
+  async remove(id: string): Promise<CategoryDto | null> {
     return await this.prismaService.getClient().category.delete({
       where: { id: String(id) },
     });
