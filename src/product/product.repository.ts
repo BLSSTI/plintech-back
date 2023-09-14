@@ -27,14 +27,14 @@ export class ProductRepository {
   }
 
   async create(data: CreateProductDto): Promise<ProductDto | null> {
-    this.veryfyCategory(data.categoryId)
+    await this.veryfyCategory(data.categoryId)
     return await this.prismaService.getClient().product.create({
       data,
     });
   }
 
   async update(id: string, data: UpdateProductDto): Promise<ProductDto | null> {
-    this.veryfyCategory(data.categoryId)
+    await this.veryfyCategory(data.categoryId)
     return await this.prismaService.getClient().product.update({
       where: { id: String(id) },
       data,

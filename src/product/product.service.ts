@@ -11,29 +11,29 @@ export class ProductService {
     private readonly categoryRepository: CategoryRepository
   ) {}
 
-  async findAll(): Promise<CategoryDto[]> {
+   findAll(): Promise<CategoryDto[]> {
     return this.categoryRepository.findAllWithProducts();
   }
 
-  async findOne(id: string): Promise<ProductDto | null> {
+   findOne(id: string): Promise<ProductDto | null> {
     return this.productRepository.findOne(id);
   }
 
-  async create(data: CreateProductDto): Promise<ProductDto> {
+   create(data: CreateProductDto): Promise<ProductDto> {
     this.veryfyCategory(data.categoryId)
     return this.productRepository.create(data);
   }
 
-  async update(id: string, data: UpdateProductDto): Promise<ProductDto | null> {
+   update(id: string, data: UpdateProductDto): Promise<ProductDto | null> {
     this.veryfyCategory(data.categoryId)
     return this.productRepository.update(id, data);
   }
 
-  async remove(id: string): Promise<ProductDto | null> {
+   remove(id: string): Promise<ProductDto | null> {
     return this.productRepository.remove(id);
   }
 
-  async veryfyCategory(id: string){
+   veryfyCategory(id: string){
      let category = this.categoryRepository.findOne(id)
      if(!category){
       throw new NotFoundException("category not found")
